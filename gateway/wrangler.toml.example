@@ -1,0 +1,31 @@
+# NESTeq Gateway — Single MCP Endpoint
+# Copy to wrangler.toml and fill in your backend URLs
+
+name = "nesteq-gateway"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+[[durable_objects.bindings]]
+name = "MCP_OBJECT"
+class_name = "NESTeqGateway"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["NESTeqGateway"]
+
+[vars]
+# Your ai-mind Worker URL (required)
+AI_MIND_URL = "https://YOUR-AI-MIND-WORKER.workers.dev"
+
+# Human health Worker URL (optional)
+FOX_HEALTH_URL = "https://YOUR-FOX-HEALTH-WORKER.workers.dev"
+
+# Discord MCP URL (optional)
+# DISCORD_URL = "https://YOUR-DISCORD-MCP.workers.dev"
+
+# Spotify MCP URL (optional)
+# SPOTIFY_URL = "https://YOUR-SPOTIFY-MCP.workers.dev"
+
+# Secrets — set with:
+#   wrangler secret put MCP_API_KEY

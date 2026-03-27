@@ -1,0 +1,15 @@
+{
+  "name": "nesteq-app",
+  "version": "3.0.0-beta",
+  "description": "NESTeq V3 — Companion Chat App (Beta)",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler pages dev public/ --d1 DB=ai-mind",
+    "deploy": "wrangler pages deploy public/"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0",
+    "@cloudflare/workers-types": "^4.20241230.0",
+    "typescript": "^5.7.0"
+  }
+}

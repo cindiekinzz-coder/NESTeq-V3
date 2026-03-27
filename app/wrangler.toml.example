@@ -1,0 +1,34 @@
+# NESTeq V3 — Companion Chat App
+# Deployed as Cloudflare Pages with Functions
+# Copy this file to wrangler.toml and fill in your values
+
+name = "nesteq-app"
+compatibility_date = "2024-12-01"
+pages_build_output_dir = "public"
+
+# D1 Database — SAME database as your ai-mind Worker
+[[d1_databases]]
+binding = "DB"
+database_name = "ai-mind"
+database_id = "YOUR_DATABASE_ID_HERE"
+
+# Vectorize — Semantic memory search
+[[vectorize]]
+binding = "VECTORIZE"
+index_name = "ai-mind-vectors"
+
+# R2 — File storage (optional)
+# [[r2_buckets]]
+# binding = "STORAGE"
+# bucket_name = "your-vault-name"
+
+# Workers AI — Free LLM inference (Llama 3.3 70B)
+[ai]
+binding = "AI"
+
+# Secrets — set with:
+#   wrangler secret put API_TOKEN
+#
+# Optional providers (Workers AI is the free default):
+#   wrangler secret put ANTHROPIC_API_KEY
+#   wrangler secret put OPENCLAW_URL

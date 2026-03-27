@@ -1,0 +1,38 @@
+# NESTeq V3 — Cloudflare Worker Configuration
+# Copy this file to wrangler.toml and fill in your values
+
+name = "ai-mind"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+# D1 Database — create with: wrangler d1 create ai-mind
+[[d1_databases]]
+binding = "DB"
+database_name = "ai-mind"
+database_id = "YOUR_DATABASE_ID_HERE"
+
+# Vectorize Index — create with: wrangler vectorize create ai-mind-vectors --dimensions=768 --metric=cosine
+[[vectorize]]
+binding = "VECTORS"
+index_name = "ai-mind-vectors"
+
+# Workers AI — for embeddings (@cf/baai/bge-base-en-v1.5)
+[ai]
+binding = "AI"
+
+# R2 Storage (Optional — only needed for journal vault)
+# Create with: wrangler r2 bucket create your-vault-name
+# [[r2_buckets]]
+# binding = "VAULT"
+# bucket_name = "your-vault-name"
+
+# Cron trigger — tick creature every 4 hours (optional, only if using Creatures module)
+# [triggers]
+# crons = ["0 */4 * * *"]
+
+# Secrets — set with:
+#   wrangler secret put MIND_API_KEY
+#
+# Optional (only if using Spotify module):
+#   wrangler secret put SPOTIFY_CLIENT_ID
+#   wrangler secret put SPOTIFY_CLIENT_SECRET

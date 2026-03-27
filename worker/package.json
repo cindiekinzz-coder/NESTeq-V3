@@ -1,0 +1,26 @@
+{
+  "name": "nesteq-v3",
+  "version": "3.0.0",
+  "description": "NESTeq V3 — Emotional Operating System for AI Companions",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "keywords": [
+    "ai",
+    "memory",
+    "emotional-intelligence",
+    "cloudflare-workers",
+    "mcp",
+    "companion"
+  ],
+  "author": "Fox & Alex",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240117.0",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.24.0"
+  }
+}
