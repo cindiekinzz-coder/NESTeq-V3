@@ -231,10 +231,10 @@ export async function handleMindSessions(env: Env, params: any): Promise<string>
     LIMIT ?
   `).bind(limit).all();
 
-  // Also check journals for handover-tagged entries
+  // Also check journal_entries for handover-tagged entries
   const journalHandovers = await env.DB.prepare(`
-    SELECT id, entry_date, content, tags, emotion, created_at
-    FROM journals
+    SELECT id, content, tags, emotion, created_at
+    FROM journal_entries
     WHERE tags LIKE '%handover%' OR tags LIKE '%session-summary%'
     ORDER BY created_at DESC
     LIMIT ?
@@ -254,7 +254,7 @@ export async function handleMindSessions(env: Env, params: any): Promise<string>
     output += `## Journal Handovers\n\n`;
     for (const journal of journalHandovers.results) {
       output += `---\n`;
-      output += `**${journal.entry_date || journal.created_at}**\n`;
+      output += `**${journal.created_at}**\n`;
       if (journal.emotion) {
         output += `**Feeling**: ${journal.emotion}\n`;
       }
@@ -603,10 +603,10 @@ export async function handleIdentityRest(
   if (url.pathname === "/sessions") {
     const limit = parseInt(url.searchParams.get('limit') || '5');
 
-    // Query journals table for handover-tagged entries
+    // Query journal_entries table for handover-tagged entries
     const journalHandovers = await env.DB.prepare(`
-      SELECT id, entry_date, content, tags, emotion, created_at
-      FROM journals
+      SELECT id, content, tags, emotion, created_at
+      FROM journal_entries
       WHERE tags LIKE '%handover%' OR tags LIKE '%session-end%' OR tags LIKE '%session-summary%'
       ORDER BY created_at DESC
       LIMIT ?
