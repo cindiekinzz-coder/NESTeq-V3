@@ -20,6 +20,7 @@ export interface Reaction {
 }
 
 export interface DriveState {
+  [key: string]: number;
   hunger: number;
   boredom: number;
   loneliness: number;

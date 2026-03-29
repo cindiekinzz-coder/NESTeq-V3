@@ -7,6 +7,7 @@ export interface Env {
   DISCORD_URL: string
   SPOTIFY_URL: string
 
-  // Secrets
+  // Secrets (set with wrangler secret put)
   MCP_API_KEY: string
+  OPENROUTER_API_KEY: string
 }

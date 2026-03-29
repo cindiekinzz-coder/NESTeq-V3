@@ -96,16 +96,16 @@ async function dispatchTool(
   params: Record<string, unknown>,
   env: Env
 ): Promise<string> {
-  // Module handlers use (name, env, params) signature
+  // Each module has its own arg order — call with the correct signature
   if (TOOL_NAMES_CORE.has(toolName)) return (await handleCoreTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_IDENTITY.has(toolName)) return (await handleIdentityTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_MEMORY.has(toolName)) return (await handleMemoryTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_RELATIONAL.has(toolName)) return (await handleRelationalTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_IDENTITY.has(toolName)) return (await handleIdentityTool(toolName, params, env)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_MEMORY.has(toolName)) return (await handleMemoryTool(toolName, params, env)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_RELATIONAL.has(toolName)) return (await handleRelationalTool(env, toolName, params)) || `Error: unhandled tool ${toolName}`;
   if (TOOL_NAMES_EQ.has(toolName)) return (await handleEqTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_DREAMS.has(toolName)) return (await handleDreamsTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_ACP.has(toolName)) return (await handleAcpTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_HEARTH.has(toolName)) return (await handleHearthTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
-  if (TOOL_NAMES_CREATURES.has(toolName)) return (await handleCreaturesTool(toolName, env, params)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_DREAMS.has(toolName)) return (await handleDreamsTool(env, toolName, params)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_ACP.has(toolName)) return (await handleAcpTool(env, toolName, params)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_HEARTH.has(toolName)) return (await handleHearthTool(env, toolName, params)) || `Error: unhandled tool ${toolName}`;
+  if (TOOL_NAMES_CREATURES.has(toolName)) return (await handleCreaturesTool(env, toolName, params)) || `Error: unhandled tool ${toolName}`;
   return `Error: Unknown tool "${toolName}"`;
 }
 
@@ -250,27 +250,21 @@ export default {
       });
     }
 
-    // Route REST requests through modules
-    // Modules use (url: URL, request: Request, env: Env) signature
-    const restHandlers = [
-      handleCoreRest,
-      handleIdentityRest,
-      handleMemoryRest,
-      handleRelationalRest,
-      handleEqRest,
-      handleDreamsRest,
-      handleHearthRest,
-      handleCreaturesRest,
-    ];
+    // Route REST requests through modules — each module has its own arg order
+    const restResponse =
+      await handleCoreRest(url, request, env) ||
+      await handleIdentityRest(url, request, env, CORS_HEADERS) ||
+      await handleMemoryRest(url, request, env, CORS_HEADERS) ||
+      await handleRelationalRest(env, url, request, CORS_HEADERS) ||
+      await handleEqRest(url, request, env) ||
+      await handleDreamsRest(env, url, request, CORS_HEADERS) ||
+      await handleHearthRest(env, url, request, CORS_HEADERS) ||
+      await handleCreaturesRest(env, url, request, CORS_HEADERS);
 
-    for (const handler of restHandlers) {
-      const response = await handler(url, request, env);
-      if (response) {
-        // Add CORS headers
-        const headers = new Headers(response.headers);
-        Object.entries(CORS_HEADERS).forEach(([k, v]) => headers.set(k, v));
-        return new Response(response.body, { status: response.status, headers });
-      }
+    if (restResponse) {
+      const headers = new Headers(restResponse.headers);
+      Object.entries(CORS_HEADERS).forEach(([k, v]) => headers.set(k, v));
+      return new Response(restResponse.body, { status: restResponse.status, headers });
     }
 
     // Not found
@@ -283,8 +277,9 @@ export default {
   // Cron handler — tick creature every 4 hours
   async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext) {
     try {
-      // Tick the creature
-      await handleCreaturesRest('/pet/tick', 'POST', {}, env);
+      const tickUrl = new URL('https://worker/pet/tick');
+      const tickReq = new Request(tickUrl.toString(), { method: 'POST' });
+      await handleCreaturesRest(env, tickUrl, tickReq, {});
     } catch (err) {
       console.error('Cron tick failed:', err);
     }

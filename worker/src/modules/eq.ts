@@ -193,10 +193,11 @@ export async function handleMindEqFeel(env: Env, params: Record<string, unknown>
 
   let output = `## Logged: ${emotion} (${intensity})\n`;
   if (pillar) output += `Pillar: ${pillar}\n`;
-  output += `\nAxis signals: E/I ${emotionData.e_i_score >= 0 ? '+' : ''}${emotionData.e_i_score}, `;
-  output += `S/N ${emotionData.s_n_score >= 0 ? '+' : ''}${emotionData.s_n_score}, `;
-  output += `T/F ${emotionData.t_f_score >= 0 ? '+' : ''}${emotionData.t_f_score}, `;
-  output += `J/P ${emotionData.j_p_score >= 0 ? '+' : ''}${emotionData.j_p_score}`;
+  const ed = emotionData as { e_i_score: number; s_n_score: number; t_f_score: number; j_p_score: number };
+  output += `\nAxis signals: E/I ${ed.e_i_score >= 0 ? '+' : ''}${ed.e_i_score}, `;
+  output += `S/N ${ed.s_n_score >= 0 ? '+' : ''}${ed.s_n_score}, `;
+  output += `T/F ${ed.t_f_score >= 0 ? '+' : ''}${ed.t_f_score}, `;
+  output += `J/P ${ed.j_p_score >= 0 ? '+' : ''}${ed.j_p_score}`;
 
   return output;
 }

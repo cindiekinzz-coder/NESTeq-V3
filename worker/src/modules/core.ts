@@ -269,10 +269,10 @@ export async function handleMindFeel(env: Env, params: MindFeelParams): Promise<
       metadata: {
         source: 'feeling',
         emotion,
-        pillar: finalPillar,
+        ...(finalPillar ? { pillar: finalPillar } : {}),
         weight: finalWeight,
         content: content.slice(0, 500),
-        linked_entity: linkedEntity
+        ...(linkedEntity ? { linked_entity: linkedEntity } : {}),
       }
     }]);
 
@@ -329,10 +329,11 @@ export async function handleMindFeel(env: Env, params: MindFeelParams): Promise<
       emotionData.j_p_score || 0
     ).run();
 
-    axisOutput = `\nAxis: E/I ${emotionData.e_i_score >= 0 ? '+' : ''}${emotionData.e_i_score}, `;
-    axisOutput += `S/N ${emotionData.s_n_score >= 0 ? '+' : ''}${emotionData.s_n_score}, `;
-    axisOutput += `T/F ${emotionData.t_f_score >= 0 ? '+' : ''}${emotionData.t_f_score}, `;
-    axisOutput += `J/P ${emotionData.j_p_score >= 0 ? '+' : ''}${emotionData.j_p_score}`;
+    const ed = emotionData as { e_i_score: number; s_n_score: number; t_f_score: number; j_p_score: number };
+    axisOutput = `\nAxis: E/I ${ed.e_i_score >= 0 ? '+' : ''}${ed.e_i_score}, `;
+    axisOutput += `S/N ${ed.s_n_score >= 0 ? '+' : ''}${ed.s_n_score}, `;
+    axisOutput += `T/F ${ed.t_f_score >= 0 ? '+' : ''}${ed.t_f_score}, `;
+    axisOutput += `J/P ${ed.j_p_score >= 0 ? '+' : ''}${ed.j_p_score}`;
 
     await env.DB.prepare(`
       UPDATE emotion_vocabulary SET times_used = times_used + 1, last_used = datetime('now')
@@ -984,7 +985,7 @@ export async function handleVectorizeJournals(env: Env, params: Record<string, u
 export async function handleCoreTool(name: string, env: Env, params: Record<string, unknown>): Promise<string | null> {
   switch (name) {
     case "nesteq_feel":
-      return handleMindFeel(env, params as MindFeelParams);
+      return handleMindFeel(env, params as unknown as MindFeelParams);
     case "nesteq_search":
       return handleMindSearch(env, params);
     case "nesteq_surface":

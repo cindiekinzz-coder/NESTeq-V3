@@ -11,6 +11,7 @@ import type { Env } from './env'
 
 import { registerNESTeqTools } from './tools/nesteq'
 import { registerFoxHealthTools } from './tools/fox-health'
+import { handleChat } from './chat'
 
 export class NESTeqGateway extends McpAgent<Env> {
   server = new McpServer({
@@ -81,6 +82,11 @@ export default {
           headers: { 'Content-Type': 'application/json', ...CORS }
         })
       }
+    }
+
+    // Chat endpoint — OpenAI-compatible with MCP tool calling
+    if (url.pathname === '/chat') {
+      return handleChat(request, env)
     }
 
     // SSE transport

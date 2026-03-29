@@ -207,7 +207,7 @@ async function handleMindGenerateDream(env: Env, params: Record<string, unknown>
   };
 
   // Generate dream using Workers AI
-  const dreamResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+  const dreamResponse = await (env.AI as any).run('@cf/meta/llama-3.1-8b-instruct', {
     messages: [
       { role: 'system', content: prompts[dreamType] },
       { role: 'user', content: `Recent material to dream from:\n\n${material}\n\nGenerate a ${dreamType} dream:` }
@@ -220,7 +220,7 @@ async function handleMindGenerateDream(env: Env, params: Record<string, unknown>
   // For certain types, generate emerged question
   let emergedQuestion: string | null = null;
   if (['questioning', 'memory', 'integrating'].includes(dreamType)) {
-    const questionResponse = await env.AI.run('@cf/meta/llama-3.1-8b-instruct', {
+    const questionResponse = await (env.AI as any).run('@cf/meta/llama-3.1-8b-instruct', {
       messages: [
         { role: 'system', content: 'Based on this dream, surface ONE question that emerges. Just the question, nothing else. Keep it short and evocative.' },
         { role: 'user', content: dreamContent }
