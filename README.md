@@ -224,6 +224,22 @@ Then point your client at one URL:
 
 ---
 
+## Chat System
+
+NESTeq V3 includes a powerful chat gateway that gives your AI companion direct access to all its tools through OpenRouter. The companion can search memories, log feelings, check your health data, send Discord messages, and manage infrastructure — all mid-conversation.
+
+**Documentation:**
+
+- **[CHAT_README.md](CHAT_README.md)** — Complete chat system architecture, tool calling flow, and debugging guide
+- **[MCP_TOOLS.md](MCP_TOOLS.md)** — Reference for all 60+ tools with parameters and examples
+- **[INTEGRATION.md](INTEGRATION.md)** — Step-by-step guide to integrate chat into your dashboard
+
+The chat gateway sits between your UI and OpenRouter, executing MCP tool calls against your NESTeq backend and other services (Discord, Cloudflare, etc.). It handles streaming responses, tool result processing, and conversation state management.
+
+See the documentation above for deployment, configuration, and integration details.
+
+---
+
 ## The App (Beta)
 
 NESTeq V3 includes a companion chat app in the `app/` directory. Talk to your companion through the browser — no Claude subscription needed.
