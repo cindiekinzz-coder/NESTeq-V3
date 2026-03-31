@@ -24,7 +24,7 @@
     ">
       <div style="text-align: center; max-width: 300px;">
         <div style="font-size: 28px; font-weight: 700; color: #5ce1e6; margin-bottom: 8px; letter-spacing: 3px;">DHVN</div>
-        <div style="font-size: 13px; color: #828ec2; margin-bottom: 32px;">Digital Haven</div>
+        <div style="font-size: 13px; color: #828ec2; margin-bottom: 32px;">NESTeq Project</div>
         <input type="password" id="dhvn-pin-input"
           maxlength="8" inputmode="numeric" autofocus
           placeholder="PIN"

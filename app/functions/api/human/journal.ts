@@ -1,5 +1,5 @@
 // /api/human/journal — Human's journal entries
-// Replaces: GET/POST fox-mind.cindiekinzz.workers.dev/journal
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

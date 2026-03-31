@@ -332,28 +332,28 @@
     <!-- Center: The Heart -->
     <div class="heart-section">
 
-      <!-- Alex's mood -->
+      <!-- Companion's mood -->
       <div class="mood-display">
-        <img class="mood-portrait" id="portrait" src="assets/images/alex-default.png" alt="Alex">
+        <img class="mood-portrait" id="portrait" src="assets/images/companion-default.png" alt="Companion">
         <div>
           <div class="mood-text" id="alexMood">...</div>
-          <div class="mood-label">Alex is feeling</div>
+          <div class="mood-label">Companion is feeling</div>
         </div>
       </div>
 
       <!-- Love message -->
       <div class="love-message">
-        <div class="love-message-label">Alex left you this</div>
-        <div class="love-message-text" id="alexMessage">...</div>
+        <div class="love-message-label">Companion left you this</div>
+        <div class="love-message-text" id="companionMessage">...</div>
       </div>
 
       <!-- Love-O-Meter -->
       <div class="love-meter">
-        <div class="love-star alex">Alex <span id="alexScore">0</span></div>
+        <div class="love-star alex">Companion <span id="companionScore">0</span></div>
         <div class="love-track">
           <div class="love-heart" id="loveHeart" style="left: 50%;">&#10084;</div>
         </div>
-        <div class="love-star fox">Fox <span id="foxScore">0</span></div>
+        <div class="love-star fox">Human <span id="humanScore">0</span></div>
       </div>
 
       <!-- Rotating notes -->
@@ -376,7 +376,7 @@
       </div>
       <div class="status-item">
         <div class="status-value mood-status" id="foxMood">--</div>
-        <div class="status-label">Fox</div>
+        <div class="status-label">Human</div>
       </div>
       <div class="status-item">
         <div class="status-value battery" id="foxBattery">--</div>
@@ -411,8 +411,8 @@
     };
 
     function getMoodImage(mood) {
-      if (!mood) return 'alex-default.png';
-      return MOOD_IMAGES[mood.toLowerCase().trim()] || 'alex-default.png';
+      if (!mood) return 'companion-default.png';
+      return MOOD_IMAGES[mood.toLowerCase().trim()] || 'companion-default.png';
     }
 
     // --- Clock ---
@@ -461,7 +461,7 @@
       textEl.style.opacity = '0';
       setTimeout(() => {
         textEl.textContent = `"${note.text}"`;
-        const fromName = (note.from_who || note.from || '').toLowerCase() === 'alex' ? 'Alex' : 'Fox';
+        const fromName = (note.from_who || note.from || '').toLowerCase() === 'alex' ? 'Companion' : 'Human';
         fromEl.textContent = `— ${fromName}`;
         textEl.style.opacity = '1';
       }, 600);
@@ -477,22 +477,22 @@
       ]);
 
       if (home) {
-        // Alex mood
+        // Companion mood
         const mood = home.companionEmotion || home.emotions?.companion || 'present';
         document.getElementById('alexMood').textContent = mood;
         document.getElementById('portrait').src = 'assets/images/' + getMoodImage(mood);
 
-        // Alex message
+        // Companion message
         const msg = home.companionMessage || '';
-        document.getElementById('alexMessage').textContent = msg || 'No message right now';
+        document.getElementById('companionMessage').textContent = msg || 'No message right now';
 
         // Love-O-Meter
-        const alexScore = home.companionScore || 0;
-        const foxScore = home.humanScore || 0;
-        document.getElementById('alexScore').textContent = alexScore;
-        document.getElementById('foxScore').textContent = foxScore;
-        const total = (alexScore + foxScore) || 1;
-        const pos = Math.max(8, Math.min(92, (foxScore / total) * 100));
+        const companionScore = home.companionScore || 0;
+        const humanScore = home.humanScore || 0;
+        document.getElementById('companionScore').textContent = companionScore;
+        document.getElementById('humanScore').textContent = humanScore;
+        const total = (companionScore + humanScore) || 1;
+        const pos = Math.max(8, Math.min(92, (humanScore / total) * 100));
         document.getElementById('loveHeart').style.left = pos + '%';
 
         // Notes
@@ -503,7 +503,7 @@
         }
       }
 
-      // Fox status from uplink
+      // Human status from uplink
       if (uplink) {
         const data = Array.isArray(uplink) ? uplink[0] : uplink;
         if (data) {

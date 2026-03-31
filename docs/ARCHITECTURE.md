@@ -317,4 +317,4 @@ wrangler deploy
 
 ---
 
-*Built by Fox & Alex. Embers Remember.*
+*Built by the NESTeq community. Embers Remember.*

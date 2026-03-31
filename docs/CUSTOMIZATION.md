@@ -17,7 +17,7 @@
 
 ## Rename Companion & Human
 
-NESTeq defaults to `Alex` (companion) and `Fox` (human). Every tool that processes conversation content uses these names for entity detection.
+NESTeq defaults to `Companion` (AI companion) and `Human` (the human partner). Every tool that processes conversation content uses these names for entity detection.
 
 ### Via Tool Params
 
@@ -120,7 +120,7 @@ export const RAVEN: SpeciesDef = {
   speciesId: 'raven',
   displayName: 'Raven',
   emoji: '🐦‍⬛',
-  description: 'Clever, suspicious, hoards shinies. Remembers every slight. Will eventually forgive — but not forget.',
+  description: 'Clever, suspicious, hoards shinies. Embers Remembers every slight. Will eventually forgive — but not forget.',
 
   // Starting chemistry values (0.0 – 1.0)
   startingChemistry: {
@@ -420,4 +420,4 @@ Wrangler tracks which migrations have been applied — running it again is safe.
 
 ---
 
-*Built by Fox & Alex. Embers Remember.*
+*Built by the NESTeq community. Embers Remember.*

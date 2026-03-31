@@ -17,8 +17,8 @@
 
     .us-photo { grid-column: 1; grid-row: 1; }
     .us-feelings { grid-column: 2; grid-row: 1; }
-    .us-fox-state { grid-column: 3; grid-row: 1 / 3; }
-    .us-alex-state { grid-column: 4; grid-row: 1 / 3; }
+    .us-human-state { grid-column: 3; grid-row: 1 / 3; }
+    .us-companion-state { grid-column: 4; grid-row: 1 / 3; }
     .us-goals { grid-column: 1; grid-row: 2; }
     .us-sessions { grid-column: 2; grid-row: 2; }
 
@@ -31,13 +31,13 @@
       .us-feelings { grid-column: 2; grid-row: 1; }
       .us-goals { grid-column: 1; grid-row: 2; }
       .us-sessions { grid-column: 2; grid-row: 2; }
-      .us-fox-state { grid-column: 1; grid-row: 3; }
-      .us-alex-state { grid-column: 2; grid-row: 3; }
+      .us-human-state { grid-column: 1; grid-row: 3; }
+      .us-companion-state { grid-column: 2; grid-row: 3; }
     }
 
     @media (max-width: 768px) {
       .us-grid { grid-template-columns: 1fr; }
-      .us-photo, .us-feelings, .us-fox-state, .us-alex-state, .us-goals, .us-sessions {
+      .us-photo, .us-feelings, .us-human-state, .us-companion-state, .us-goals, .us-sessions {
         grid-column: 1; grid-row: auto;
       }
     }
@@ -182,7 +182,7 @@
       flex-shrink: 0;
     }
 
-    /* Fox threads in state column */
+    /* Human threads in state column */
     .fox-thread-item {
       padding: 5px 0;
       border-bottom: 1px solid rgba(0,0,0,0.06);
@@ -284,8 +284,8 @@
     <a href="chat.html">Chat</a>
     <a href="index.html">Home</a>
     <a href="us.html" class="active">Us</a>
-    <a href="alex.html">Alex</a>
-    <a href="fox.html">Fox</a>
+    <a href="companion.html">Companion</a>
+    <a href="human.html">Human</a>
     <a href="autonomous.html">Autonomous</a>
     <a href="neural.html">Neural</a>
     <a href="housekeeping.html">Housekeeping</a>
@@ -302,19 +302,19 @@
         </div>
       </div>
 
-      <!-- Feelings: Fox & Alex -->
+      <!-- Feelings: Human & Companion -->
       <div class="us-feelings">
         <div class="card card-dusty" style="height: 100%;">
           <div class="card-title">Feelings</div>
           <div class="feelings-split">
             <div>
-              <div class="feelings-column-label" style="color: var(--pink-dark);">Fox</div>
+              <div class="feelings-column-label" style="color: var(--pink-dark);">Human</div>
               <div class="card-scroll" id="foxFeelings" style="max-height: 240px;">
                 <div class="loading">Loading...</div>
               </div>
             </div>
             <div>
-              <div class="feelings-column-label" style="color: var(--teal-dark);">Alex</div>
+              <div class="feelings-column-label" style="color: var(--teal-dark);">Companion</div>
               <div class="card-scroll" id="alexFeelings" style="max-height: 240px;">
                 <div class="loading">Loading...</div>
               </div>
@@ -323,20 +323,20 @@
         </div>
       </div>
 
-      <!-- Fox State (tall pink column) -->
-      <div class="us-fox-state">
+      <!-- Human State (tall pink column) -->
+      <div class="us-human-state">
         <div class="card card-pink" style="height: 100%;">
-          <div class="card-title">Fox</div>
+          <div class="card-title">Human</div>
           <div id="foxState">
             <div class="loading">Loading...</div>
           </div>
         </div>
       </div>
 
-      <!-- Alex State (tall teal column) -->
-      <div class="us-alex-state">
+      <!-- Companion State (tall teal column) -->
+      <div class="us-companion-state">
         <div class="card card-teal" style="height: 100%;">
-          <div class="card-title">Alex</div>
+          <div class="card-title">Companion</div>
           <div id="alexState">
             <div class="loading">Loading...</div>
           </div>
@@ -386,7 +386,7 @@
     }
 
     async function loadUsPage() {
-      const [home, feelings, uplink, sessions, foxJournals, alexThreads, foxThreads] = await Promise.all([
+      const [home, feelings, uplink, sessions, humanJournals, companionThreads, humanThreads] = await Promise.all([
         AiMind.getHome(),
         AiMind.getFeelings(20),
         FoxMind.getUplink(1),
@@ -396,7 +396,7 @@
         FoxMind.getThreads('active'),
       ]);
 
-      // --- Feelings (Fox & Alex) ---
+      // --- Feelings (Human & Companion) ---
       if (feelings) {
         const list = feelings.observations || (Array.isArray(feelings) ? feelings : []);
 
@@ -412,9 +412,9 @@
           : '<div class="empty">Quiet right now</div>';
       }
 
-      // Fox's feelings — from her journals
-      if (foxJournals) {
-        const entries = foxJournals.entries || (Array.isArray(foxJournals) ? foxJournals : []);
+      // Human's feelings — from her journals
+      if (humanJournals) {
+        const entries = humanJournals.entries || (Array.isArray(humanJournals) ? humanJournals : []);
         document.getElementById('foxFeelings').innerHTML = entries.length
           ? entries.map(j => `
             <div class="feeling-item" onclick="this.classList.toggle('open')">
@@ -426,7 +426,7 @@
           : '<div class="empty">Quiet right now</div>';
       }
 
-      // --- Fox State (bar graphs + threads) ---
+      // --- Human State (bar graphs + threads) ---
       {
         let foxHtml = '';
         if (uplink) {
@@ -455,8 +455,8 @@
           }
         }
 
-        // Fox threads
-        const foxThreadList = (foxThreads && foxThreads.threads) ? foxThreads.threads : [];
+        // Human threads
+        const foxThreadList = (humanThreads && humanThreads.threads) ? humanThreads.threads : [];
         if (foxThreadList.length) {
           foxHtml += `<div style="margin-top: 12px; padding-top: 8px; border-top: 1px solid rgba(0,0,0,0.08);">
             <div class="state-label" style="margin-bottom: 6px;">Active Threads</div>`;
@@ -470,12 +470,12 @@
         document.getElementById('foxState').innerHTML = foxHtml || '<div class="empty">No data yet</div>';
       }
 
-      // --- Alex State ---
+      // --- Companion State ---
       if (home) {
         const emotion = home.companionEmotion || home.emotions?.companion || 'present';
         const message = home.companionMessage || '';
         // Use threads from /threads endpoint (not home.threads which is empty)
-        const threadList = (alexThreads && alexThreads.threads) ? alexThreads.threads : (home.threads || []);
+        const threadList = (companionThreads && companionThreads.threads) ? companionThreads.threads : (home.threads || []);
         const activeThreads = threadList.filter(t => (t.status || 'active') === 'active');
 
         let threadsHtml = '';

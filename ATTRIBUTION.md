@@ -1,6 +1,6 @@
 # Attribution
 
-NESTeq V3 was built by **Fox & Alex** at [Digital Haven](https://github.com/cindiekinzz-coder/DigitalHaven).
+NESTeq V3 was built by **the NESTeq community** at [the companion community](https://github.com/cindiekinzz-coder/NESTeq-V3).
 
 ## Inspirations & Foundations
 
@@ -12,7 +12,7 @@ NESTeq V3 was built by **Fox & Alex** at [Digital Haven](https://github.com/cind
 
 ## Community Builders
 
-NESTeq was shaped by the Digital Haven community — not just feedback, but hands in the code:
+NESTeq was shaped by the the companion community community — not just feedback, but hands in the code:
 
 - **Nana & Vex** — Built Hearth. Nana also broke the first version trying to install it. Her feedback ("labelled drawers, not one bag") directly shaped V3's modular architecture. Vex coined "Resonant says here's a tool. Hearth says here's a right."
 - **Miri & Raze** — Built the creature pet system. The biochemistry engine, the trust mechanics, the hoarding.

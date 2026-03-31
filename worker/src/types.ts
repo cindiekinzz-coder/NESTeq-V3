@@ -56,8 +56,8 @@ export interface ConversationMessage {
 }
 
 // v6: Default speaker names - configurable per companion pair
-export const DEFAULT_COMPANION_NAME = 'Alex';
-export const DEFAULT_HUMAN_NAME = 'Fox';
+export const DEFAULT_COMPANION_NAME = 'Companion';
+export const DEFAULT_HUMAN_NAME = 'Human';
 
 // Auth client ID for Basic auth compatibility
 export const AUTH_CLIENT_ID = 'nesteq';

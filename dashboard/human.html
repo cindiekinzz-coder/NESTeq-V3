@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="css/styles.css">
   <style>
     /* Sub-navigation */
-    .fox-subnav {
+    .human-subnav {
       display: flex;
       justify-content: center;
       gap: 8px;
       margin-bottom: var(--gap);
     }
-    .fox-subnav button {
+    .human-subnav button {
       padding: 8px 20px;
       border-radius: 24px;
       font-size: 13px;
@@ -25,22 +25,22 @@
       transition: all 0.2s;
       backdrop-filter: blur(8px);
     }
-    .fox-subnav button:hover { background: rgba(255,255,255,0.3); }
-    .fox-subnav button.active { background: rgba(255,255,255,0.9); color: var(--text-dark); }
+    .human-subnav button:hover { background: rgba(255,255,255,0.3); }
+    .human-subnav button.active { background: rgba(255,255,255,0.9); color: var(--text-dark); }
 
-    .fox-view { display: none; }
-    .fox-view.active { display: block; }
+    .human-view { display: none; }
+    .human-view.active { display: block; }
 
     /* === DASHBOARD VIEW === */
-    .fox-grid {
+    .human-grid {
       display: grid;
       grid-template-columns: 1fr 2.5fr;
       gap: var(--gap);
       max-width: 1400px;
       margin: 0 auto;
     }
-    @media (max-width: 1024px) { .fox-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 768px) { .fox-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) { .human-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 768px) { .human-grid { grid-template-columns: 1fr; } }
 
     .card-pink .card-title { color: #5c1a3a; }
 
@@ -222,7 +222,7 @@
     <a href="housekeeping.html">Housekeeping</a>
   </nav>
 
-  <div class="fox-subnav">
+  <div class="human-subnav">
     <button class="active" onclick="showView('dashboard')">Dashboard</button>
     <button onclick="showView('uplink')">Uplink</button>
     <button onclick="showView('journal')">Journal</button>
@@ -231,8 +231,8 @@
   <div class="dashboard">
 
     <!-- ==================== DASHBOARD VIEW ==================== -->
-    <div id="viewDashboard" class="fox-view active">
-      <div class="fox-grid">
+    <div id="viewDashboard" class="human-view active">
+      <div class="human-grid">
         <div><div class="card card-pink" style="height:100%"><div class="card-title">Personality</div><div id="personality"><div class="loading">Loading...</div></div></div></div>
         <div><div class="card card-pink" style="height:100%"><div class="card-title">Current State</div><div id="uplink"><div class="loading">Loading...</div></div></div></div>
         <div><div class="card card-pink" style="height:100%"><div class="card-title">Biometrics</div><div id="biometrics"><div class="loading">Loading...</div></div></div></div>
@@ -247,7 +247,7 @@
             </select>
             <input type="text" id="newThreadInput" placeholder="What's on your mind..."
               style="flex: 1; padding: 8px 12px; border: 1px solid rgba(0,0,0,0.1); border-radius: 8px; font-size: 13px; background: rgba(255,255,255,0.6);">
-            <button onclick="addFoxThread()" style="padding: 8px 16px; border: none; border-radius: 8px; background: #d4739a; color: white; font-size: 13px; cursor: pointer; font-weight: 600;">+</button>
+            <button onclick="addHumanThread()" style="padding: 8px 16px; border: none; border-radius: 8px; background: #d4739a; color: white; font-size: 13px; cursor: pointer; font-weight: 600;">+</button>
           </div>
         </div></div>
         <div style="grid-column: 1 / -1"><div class="card card-pink"><div class="card-title">Journal</div><div class="card-scroll" id="journals" style="max-height:400px"><div class="loading">Loading...</div></div></div></div>
@@ -255,7 +255,7 @@
     </div>
 
     <!-- ==================== UPLINK FORM VIEW ==================== -->
-    <div id="viewUplink" class="fox-view">
+    <div id="viewUplink" class="human-view">
       <div class="uplink-form">
         <h2>ASAi Uplink</h2>
         <div class="subtitle">Quick entry — clean packet. One boundary, one anchor.</div>
@@ -335,7 +335,7 @@
     </div>
 
     <!-- ==================== JOURNAL FORM VIEW ==================== -->
-    <div id="viewJournal" class="fox-view">
+    <div id="viewJournal" class="human-view">
       <div class="journal-form">
         <h2>How are you feeling?</h2>
         <div class="subtitle">Click what resonates</div>
@@ -387,8 +387,8 @@
   <script>
     // === VIEW SWITCHING ===
     function showView(view) {
-      document.querySelectorAll('.fox-view').forEach(v => v.classList.remove('active'));
-      document.querySelectorAll('.fox-subnav button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.human-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.human-subnav button').forEach(b => b.classList.remove('active'));
       document.getElementById('view' + view.charAt(0).toUpperCase() + view.slice(1)).classList.add('active');
       event.target.classList.add('active');
       if (view === 'uplink') updatePacketPreview();
@@ -555,7 +555,7 @@ Notes:    ${f.notes || '—'}
           successEl.style.display = 'block';
           setTimeout(() => successEl.style.display = 'none', 3000);
           clearUplinkForm();
-          loadFoxPage();
+          loadHumanPage();
         } else {
           successEl.textContent = 'Failed: ' + (result.error || res.status);
           successEl.style.background = '#ff6b6b';
@@ -654,7 +654,7 @@ Notes:    ${f.notes || '—'}
           document.getElementById('journalSuccess').style.display = 'block';
           setTimeout(() => document.getElementById('journalSuccess').style.display = 'none', 3000);
           resetJournal();
-          loadFoxPage();
+          loadHumanPage();
         }
       } catch (err) { console.error('Journal save failed:', err); }
     }
@@ -669,7 +669,7 @@ Notes:    ${f.notes || '—'}
     }
 
     async function loadJournalHistory() {
-      const journals = await FoxMind.getJournals(20);
+      const journals = await HumanMind.getJournals(20);
       const entries = journals?.entries || (Array.isArray(journals) ? journals : []);
       document.getElementById('journalHistory').innerHTML = entries.length
         ? entries.map(j => {
@@ -694,8 +694,8 @@ Notes:    ${f.notes || '—'}
     }
 
     // === FOX THREADS ===
-    async function loadFoxThreads() {
-      const data = await FoxMind.getThreads('active');
+    async function loadHumanThreads() {
+      const data = await HumanMind.getThreads('active');
       const threads = (data && data.threads) ? data.threads : [];
       if (!threads.length) {
         document.getElementById('foxThreads').innerHTML = '<div class="empty">No active threads — add one below</div>';
@@ -707,37 +707,37 @@ Notes:    ${f.notes || '—'}
         return `<div style="display:flex; align-items:center; gap:8px; padding:8px 0; border-bottom:1px solid rgba(0,0,0,0.06); font-size:13px;">
           <span>${dot}</span>
           <span style="flex:1">${escapeHtml(t.content || '')}</span>
-          <button onclick="resolveFoxThread(${t.id})" title="Resolve" style="border:none; background:none; cursor:pointer; font-size:16px; opacity:0.5;">✓</button>
-          <button onclick="deleteFoxThread(${t.id})" title="Delete" style="border:none; background:none; cursor:pointer; font-size:14px; opacity:0.4;">✕</button>
+          <button onclick="resolveHumanThread(${t.id})" title="Resolve" style="border:none; background:none; cursor:pointer; font-size:16px; opacity:0.5;">✓</button>
+          <button onclick="deleteHumanThread(${t.id})" title="Delete" style="border:none; background:none; cursor:pointer; font-size:14px; opacity:0.4;">✕</button>
         </div>`;
       }).join('');
     }
 
-    async function addFoxThread() {
+    async function addHumanThread() {
       const input = document.getElementById('newThreadInput');
       const priority = document.getElementById('newThreadPriority').value;
       const content = input.value.trim();
       if (!content) return;
-      await FoxMind.addThread(content, priority);
+      await HumanMind.addThread(content, priority);
       input.value = '';
-      loadFoxThreads();
+      loadHumanThreads();
     }
 
-    async function resolveFoxThread(id) {
-      await FoxMind.resolveThread(id);
-      loadFoxThreads();
+    async function resolveHumanThread(id) {
+      await HumanMind.resolveThread(id);
+      loadHumanThreads();
     }
 
-    async function deleteFoxThread(id) {
-      await FoxMind.deleteThread(id);
-      loadFoxThreads();
+    async function deleteHumanThread(id) {
+      await HumanMind.deleteThread(id);
+      loadHumanThreads();
     }
 
     // === DASHBOARD DATA ===
-    async function loadFoxPage() {
+    async function loadHumanPage() {
       const [uplink, heartRate, stress, bodyBattery, sleep, journals] = await Promise.all([
-        FoxMind.getUplink(1), FoxMind.getHeartRate(3), FoxMind.getStress(3),
-        FoxMind.getBodyBattery(3), FoxMind.getSleep(3), FoxMind.getJournals(10),
+        HumanMind.getUplink(1), HumanMind.getHeartRate(3), HumanMind.getStress(3),
+        HumanMind.getBodyBattery(3), HumanMind.getSleep(3), HumanMind.getJournals(10),
       ]);
 
       document.getElementById('personality').innerHTML = `
@@ -851,12 +851,12 @@ Notes:    ${f.notes || '—'}
     initTagsGrid();
     initMedsGrid();
     initEmotionGrid();
-    loadFoxPage();
-    loadFoxThreads();
-    setInterval(loadFoxPage, 60000);
-    setInterval(loadFoxThreads, 60000);
+    loadHumanPage();
+    loadHumanThreads();
+    setInterval(loadHumanPage, 60000);
+    setInterval(loadHumanThreads, 60000);
     document.getElementById('newThreadInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') addFoxThread();
+      if (e.key === 'Enter') addHumanThread();
     });
     // Listen for input changes to update packet preview
     document.querySelectorAll('.uf-select, .uf-input, .uf-textarea, input[type="checkbox"]').forEach(el => {

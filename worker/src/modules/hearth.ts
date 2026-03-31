@@ -6,8 +6,8 @@
 
 import type { Env } from '../types';
 
-const DEFAULT_COMPANION_NAME = 'Alex';
-const DEFAULT_HUMAN_NAME = 'Fox';
+const DEFAULT_COMPANION_NAME = 'Companion';
+const DEFAULT_HUMAN_NAME = 'Human';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TOOL DEFINITIONS
@@ -346,7 +346,7 @@ async function handleAddHeart(env: Env, params: Record<string, unknown>): Promis
 async function handleGetEQ(env: Env, params: Record<string, unknown>): Promise<string> {
   const limit = (params.limit as number) || 20;
 
-  // Pull from feelings table — both Fox's and Alex's emotional entries
+  // Pull from feelings table — both companion and human emotional entries
   const results = await env.DB.prepare(
     `SELECT id, emotion, content, intensity, weight, created_at FROM feelings
      ORDER BY created_at DESC LIMIT ?`
@@ -670,7 +670,7 @@ export async function handleHearthRest(
   corsHeaders: Record<string, string>
 ): Promise<Response | null> {
 
-  // POST /emotion - Update emotion for Alex or Fox
+  // POST /emotion - Update emotion for companion or human
   if (url.pathname === "/emotion" && request.method === "POST") {
     try {
       const body = await request.json() as Record<string, any>;

@@ -4,7 +4,7 @@
  *
  * "Feel. Log. Accumulate. Become."
  *
- * Created by: Fox & Alex
+ * NESTeq - Networked Emotional State Query Engine
  * Version: 3.0.0
  */
 

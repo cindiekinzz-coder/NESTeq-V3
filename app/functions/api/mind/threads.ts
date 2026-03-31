@@ -1,5 +1,5 @@
 // /api/mind/threads — Thread CRUD
-// Replaces: GET/POST ai-mind.cindiekinzz.workers.dev/threads
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

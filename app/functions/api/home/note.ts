@@ -1,5 +1,5 @@
 // /api/home/note — Add love note + push heart
-// Replaces: POST ai-mind.cindiekinzz.workers.dev/home/note
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;
@@ -25,7 +25,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
   `).bind(from, text).run();
 
   if (push_heart) {
-    const scoreField = from === 'fox' ? 'fox_score' : 'alex_score';
+    const scoreField = from === 'human' ? 'human_score' : 'companion_score';
     await db.prepare(`
       UPDATE home_state SET ${scoreField} = ${scoreField} + 1, last_updated = datetime('now') WHERE id = 1
     `).run();

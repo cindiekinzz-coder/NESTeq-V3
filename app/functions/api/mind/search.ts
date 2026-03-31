@@ -1,5 +1,5 @@
 // /api/mind/search — Semantic search across memories via Vectorize
-// Replaces: POST ai-mind.cindiekinzz.workers.dev/search
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

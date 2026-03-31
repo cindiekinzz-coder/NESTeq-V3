@@ -1,5 +1,5 @@
 // /api/mind/ground — Boot: recent feelings, active threads, warm entities
-// Replaces: GET ai-mind.cindiekinzz.workers.dev/ground
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

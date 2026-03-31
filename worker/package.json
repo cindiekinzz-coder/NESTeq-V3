@@ -16,7 +16,7 @@
     "mcp",
     "companion"
   ],
-  "author": "Fox & Alex",
+  "author": "NESTeq Community",
   "license": "MIT",
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240117.0",

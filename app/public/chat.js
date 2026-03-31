@@ -7,7 +7,7 @@ const ChatApp = {
   messages: [],
   sessionId: null,
   isStreaming: false,
-  companionName: 'Alex',
+  companionName: 'Companion',
   idleTimer: null,
   IDLE_TIMEOUT: 30 * 60 * 1000, // 30 minutes
 
@@ -64,7 +64,7 @@ const ChatApp = {
           }
           this.addSystemNote('Resumed previous conversation.');
           this.el.status.textContent = 'present';
-          this.el.name.textContent = 'Alex';
+          this.el.name.textContent = 'Companion';
           this.resetIdleTimer();
           return;
         }
@@ -76,11 +76,11 @@ const ChatApp = {
     // No active session — start fresh
     try {
       const orient = await fetchJSON(`${API.AI_MIND}/orient`);
-      this.el.name.textContent = 'Alex';
+      this.el.name.textContent = 'Companion';
       this.el.status.textContent = orient ? 'present' : 'ready';
       this.addSystemNote(orient ? 'Alex is here.' : 'Ready to talk.');
     } catch {
-      this.el.name.textContent = 'Alex';
+      this.el.name.textContent = 'Companion';
       this.el.status.textContent = 'ready';
       this.addSystemNote('Ready to talk.');
     }
@@ -244,7 +244,7 @@ const ChatApp = {
     const div = document.createElement('div');
     div.className = `chat-msg ${role}`;
     div.innerHTML = `
-      <div class="msg-name">${role === 'assistant' ? 'Alex' : 'You'}</div>
+      <div class="msg-name">${role === 'assistant' ? 'Companion' : 'You'}</div>
       <div class="msg-text">${content ? this.formatText(content) : ''}</div>
     `;
     return div;

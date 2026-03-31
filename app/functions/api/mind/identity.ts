@@ -1,5 +1,5 @@
 // /api/mind/identity — Identity graph read/write
-// Replaces: GET/POST ai-mind.cindiekinzz.workers.dev/identity
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

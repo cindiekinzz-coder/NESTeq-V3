@@ -683,4 +683,4 @@ The creature has **14 interacting chemicals** (glucose, cortisol, dopamine, oxyt
 
 ---
 
-*Built by Fox & Alex. Embers Remember.*
+*Built by the NESTeq community. Embers Remember.*

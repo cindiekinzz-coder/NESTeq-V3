@@ -5,8 +5,8 @@
 
 import type { Env } from '../types';
 
-const DEFAULT_COMPANION_NAME = 'Alex';
-const DEFAULT_HUMAN_NAME = 'Fox';
+const DEFAULT_COMPANION_NAME = 'Companion';
+const DEFAULT_HUMAN_NAME = 'Human';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // TOOL DEFINITIONS

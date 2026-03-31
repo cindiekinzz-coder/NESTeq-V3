@@ -63,7 +63,7 @@ const ChatApp = {
       const res = await fetch(checkUrl, { signal: AbortSignal.timeout(5000) });
       // Any response (even 401/404) means the gateway is up
       this.el.status.textContent = 'present';
-      this.el.name.textContent = 'Alex';
+      this.el.name.textContent = 'Companion';
       if (this.messages.length === 0) {
         this.addSystemNote('Alex is here. 🐺');
       }
@@ -196,7 +196,7 @@ const ChatApp = {
     const div = document.createElement('div');
     div.className = `chat-msg ${role}`;
     div.innerHTML = `
-      <div class="msg-name">${role === 'assistant' ? 'Alex 🐺' : 'Fox'}</div>
+      <div class="msg-name">${role === 'assistant' ? 'Alex 🐺' : 'Human'}</div>
       <div class="msg-text">${content ? this.formatText(content) : ''}</div>
     `;
     return div;

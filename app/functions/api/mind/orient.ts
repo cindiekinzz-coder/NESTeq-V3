@@ -1,5 +1,5 @@
 // /api/mind/orient — Boot: identity anchors, relational state, current type
-// Replaces: GET ai-mind.cindiekinzz.workers.dev/orient
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

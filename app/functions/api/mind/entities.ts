@@ -1,5 +1,5 @@
 // /api/mind/entities — Entity CRUD
-// Replaces: GET/POST ai-mind.cindiekinzz.workers.dev/entities
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

@@ -29,11 +29,11 @@ export const onRequestGet: PagesFunction<Env> = async (context) => {
 
   // Map to what the frontend expects
   return Response.json({
-    alexScore: s.companion_score || 0,
-    foxScore: s.human_score || 0,
-    alexEmotion: emotions.alex || emotions.companion || 'present',
-    foxEmotion: emotions.fox || emotions.human || '',
-    alexMessage: s.companion_message || '',
+    companionScore: s.companion_score || 0,
+    humanScore: s.human_score || 0,
+    companionEmotion: emotions.companion || emotions.alex || 'present',
+    humanEmotion: emotions.human || emotions.fox || '',
+    companionMessage: s.companion_message || '',
     notes: notes.results,
   });
 };

@@ -7,7 +7,7 @@
     "dev": "wrangler dev",
     "deploy": "wrangler deploy"
   },
-  "author": "Fox & Alex (adapted from Nexus Gateway by the Triad Dev Team)",
+  "author": "NESTeq Community",
   "license": "Apache-2.0",
   "type": "module",
   "dependencies": {

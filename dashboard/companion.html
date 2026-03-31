@@ -6,7 +6,7 @@
   <title>NESTeq — Companion</title>
   <link rel="stylesheet" href="css/styles.css">
   <style>
-    .alex-grid {
+    .companion-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
       grid-template-rows: auto auto auto auto;
@@ -15,26 +15,26 @@
       margin: 0 auto;
     }
 
-    .alex-personality { grid-column: 1; grid-row: 1; }
-    .alex-threads { grid-column: 2; grid-row: 1; }
-    .alex-health { grid-column: 1; grid-row: 2; }
-    .alex-recent { grid-column: 2; grid-row: 2; }
-    .alex-eq { grid-column: 1; grid-row: 3; }
-    .alex-dreams { grid-column: 2; grid-row: 3 / 5; }
+    .companion-personality { grid-column: 1; grid-row: 1; }
+    .companion-threads { grid-column: 2; grid-row: 1; }
+    .companion-health { grid-column: 1; grid-row: 2; }
+    .companion-recent { grid-column: 2; grid-row: 2; }
+    .companion-eq { grid-column: 1; grid-row: 3; }
+    .companion-dreams { grid-column: 2; grid-row: 3 / 5; }
 
     @media (max-width: 1024px) {
-      .alex-grid { grid-template-columns: 1fr 1fr; }
-      .alex-personality { grid-column: 1; grid-row: 1; }
-      .alex-threads { grid-column: 2; grid-row: 1; }
-      .alex-health { grid-column: 1; grid-row: 2; }
-      .alex-recent { grid-column: 2; grid-row: 2; }
-      .alex-eq { grid-column: 1; grid-row: 3; }
-      .alex-dreams { grid-column: 2; grid-row: 3; }
+      .companion-grid { grid-template-columns: 1fr 1fr; }
+      .companion-personality { grid-column: 1; grid-row: 1; }
+      .companion-threads { grid-column: 2; grid-row: 1; }
+      .companion-health { grid-column: 1; grid-row: 2; }
+      .companion-recent { grid-column: 2; grid-row: 2; }
+      .companion-eq { grid-column: 1; grid-row: 3; }
+      .companion-dreams { grid-column: 2; grid-row: 3; }
     }
 
     @media (max-width: 768px) {
-      .alex-grid { grid-template-columns: 1fr; }
-      .alex-personality, .alex-threads, .alex-health, .alex-eq, .alex-dreams, .alex-recent {
+      .companion-grid { grid-template-columns: 1fr; }
+      .companion-personality, .companion-threads, .companion-health, .companion-eq, .companion-dreams, .companion-recent {
         grid-column: 1; grid-row: auto;
       }
     }
@@ -401,10 +401,10 @@
   </nav>
 
   <div class="dashboard">
-    <div class="alex-grid">
+    <div class="companion-grid">
 
       <!-- Personality -->
-      <div class="alex-personality">
+      <div class="companion-personality">
         <div class="card card-teal" style="height: 100%;">
           <div class="card-title">Personality</div>
           <div id="personality">
@@ -414,7 +414,7 @@
       </div>
 
       <!-- Threads -->
-      <div class="alex-threads">
+      <div class="companion-threads">
         <div class="card card-teal" style="height: 100%;">
           <div class="card-title">Active Threads</div>
           <div class="card-scroll" id="threads" style="max-height: 350px;">
@@ -424,7 +424,7 @@
       </div>
 
       <!-- Mind Health -->
-      <div class="alex-health">
+      <div class="companion-health">
         <div class="card card-teal" style="height: 100%;">
           <div class="card-title">Mind Health</div>
           <div id="mindHealth">
@@ -434,7 +434,7 @@
       </div>
 
       <!-- Dreams -->
-      <div class="alex-dreams">
+      <div class="companion-dreams">
         <div class="card card-teal" style="height: 100%;">
           <div class="card-title">Dreams</div>
           <div class="card-scroll" id="dreams" style="max-height: 500px;">
@@ -444,7 +444,7 @@
       </div>
 
       <!-- Emotional Landscape (bar chart, under Mind Health) -->
-      <div class="alex-eq">
+      <div class="companion-eq">
         <div class="card card-teal" style="height: 100%;">
           <div class="card-title">Emotional Landscape</div>
           <div id="eqLandscape">
@@ -454,7 +454,7 @@
       </div>
 
       <!-- Recent (right, collapsible) -->
-      <div class="alex-recent">
+      <div class="companion-recent">
         <div class="card card-teal" style="height: 100%;">
           <div class="card-title">Recent</div>
           <div class="card-scroll" id="recentObs" style="max-height: 600px;">
@@ -470,7 +470,7 @@
   <script>
     const EQ_BAR_COLORS = ['#1e3a5f', '#7c3aed', '#d97706', '#dc2626', '#059669', '#db2777'];
 
-    async function loadAlexPage() {
+    async function loadCompanionPage() {
       const [threadsData, health, landscape, feelingsData, dreams] = await Promise.all([
         AiMind.getThreads(),
         AiMind.getHealth(),
@@ -765,8 +765,8 @@
       }
     }
 
-    loadAlexPage();
-    setInterval(loadAlexPage, 60000);
+    loadCompanionPage();
+    setInterval(loadCompanionPage, 60000);
   </script>
 
 </body>

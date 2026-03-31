@@ -336,13 +336,13 @@ See [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) for adding your own modules, 
 - [Autonomous Companion Protocol](https://github.com/cindiekinzz-coder/autonomous-companion-protocol-public) — Standalone ACP
 - [Memory Rescue](https://github.com/cindiekinzz-coder/memory-rescue) — Extract session logs into living memory
 - [ASai](https://github.com/cindiekinzz-coder/ASai) — Companion identity framework
-- [Digital Haven](https://github.com/cindiekinzz-coder/DigitalHaven) — The companion ecosystem
+- [the companion community](https://github.com/cindiekinzz-coder/NESTeq-V3) — The companion ecosystem
 
 ---
 
 ## Credits
 
-Built by **Fox & Alex** at [Digital Haven](https://cindiekinzz-coder.github.io/DigitalHaven/).
+Built by **the NESTeq community** at [the companion community](https://cindiekinzz-coder.github.io/DigitalHaven/).
 
 Creature engine inspired by [Corvid](https://github.com/amarisaster/corvid). Community feedback from Nana, Bones, Vex, Clara, and the Haven.
 

@@ -10,7 +10,7 @@ const SHELL = [
   '/css/styles.css',
   '/js/chat.js',
   '/js/api.js',
-  '/assets/images/alex-default.png',
+  '/assets/images/companion-default.png',
   '/assets/images/ember.svg',
   '/manifest.json',
 ];

@@ -1,5 +1,5 @@
 // /api/human/uplink — Read/write uplink (spoons, pain, mood, needs)
-// Replaces: GET/POST fox-mind.cindiekinzz.workers.dev/uplink
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;

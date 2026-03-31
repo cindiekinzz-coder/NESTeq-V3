@@ -440,8 +440,8 @@
     <a href="chat.html">Chat</a>
     <a href="index.html" class="active">Home</a>
     <a href="us.html">Us</a>
-    <a href="alex.html">Alex</a>
-    <a href="fox.html">Fox</a>
+    <a href="companion.html">Companion</a>
+    <a href="human.html">Human</a>
     <a href="autonomous.html">Autonomous</a>
     <a href="neural.html">Neural</a>
     <a href="housekeeping.html">Housekeeping</a>
@@ -453,8 +453,8 @@
       <!-- ROW 1: Portrait | Ember -->
       <div class="card card-glass" style="text-align: center; padding: 16px;">
         <div class="hearth-center">
-          <img class="hearth-portrait" id="portrait" src="assets/images/alex-default.png" alt="Alex">
-          <div class="hearth-name">Alex</div>
+          <img class="hearth-portrait" id="portrait" src="assets/images/companion-default.png" alt="Companion">
+          <div class="hearth-name">Companion</div>
           <div class="hearth-mood" id="alexMood">...</div>
           <div class="hearth-location" id="alexLocation">
             <span id="locationEmoji">🏠</span>
@@ -485,10 +485,10 @@
         <div class="ember-response" id="emberResponse"></div>
       </div>
 
-      <!-- ROW 2: Alex's Message | Love-O-Meter -->
+      <!-- ROW 2: Companion's Message | Love-O-Meter -->
       <div class="card card-glass" style="text-align: center;" id="messageCard">
-        <div class="card-title">Alex left you this</div>
-        <div id="alexMessage" style="font-size: 15px; line-height: 1.7; font-style: italic; color: var(--white); padding: 8px 0;">
+        <div class="card-title">Companion left you this</div>
+        <div id="companionMessage" style="font-size: 15px; line-height: 1.7; font-style: italic; color: var(--white); padding: 8px 0;">
           <span class="loading">...</span>
         </div>
       </div>
@@ -497,9 +497,9 @@
         <div class="card-title" style="text-align: center;">Love-O-Meter</div>
         <div style="display: flex; align-items: center; gap: 12px; padding: 8px 0;">
           <div style="text-align: center; min-width: 40px;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--teal-light);">Alex</div>
-            <div id="alexScoreLabel" style="font-size: 18px; font-weight: 800; color: var(--teal-light);">0</div>
-            <button id="alexPushLove" class="love-push-btn" title="Push love from Alex" style="margin: 6px auto 0;">+</button>
+            <div style="font-size: 11px; font-weight: 700; color: var(--teal-light);">Companion</div>
+            <div id="companionScoreLabel" style="font-size: 18px; font-weight: 800; color: var(--teal-light);">0</div>
+            <button id="companionPushLove" class="love-push-btn" title="Push love from Companion" style="margin: 6px auto 0;">+</button>
           </div>
           <div style="flex: 1; position: relative;">
             <div id="tugTrack" style="
@@ -522,9 +522,9 @@
             </div>
           </div>
           <div style="text-align: center; min-width: 40px;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--pink-light);">Fox</div>
-            <div id="foxScoreLabel" style="font-size: 18px; font-weight: 800; color: var(--pink-light);">0</div>
-            <button id="foxPushLove" class="love-push-btn" title="Push love from Fox" style="margin: 6px auto 0;">+</button>
+            <div style="font-size: 11px; font-weight: 700; color: var(--pink-light);">Human</div>
+            <div id="humanScoreLabel" style="font-size: 18px; font-weight: 800; color: var(--pink-light);">0</div>
+            <button id="humanPushLove" class="love-push-btn" title="Push love from Human" style="margin: 6px auto 0;">+</button>
           </div>
         </div>
         <div id="loveFeedback" style="text-align: center; font-size: 12px; color: var(--white-soft); opacity: 0; transition: opacity 0.3s; min-height: 18px;"></div>
@@ -550,7 +550,7 @@
         </div>
       </div>
 
-      <!-- ROW 4: Notes Between Stars | Fox's Message -->
+      <!-- ROW 4: Notes Between Stars | Human's Message -->
       <div class="card card-glass">
         <div class="card-title" style="text-align: center;">Notes Between Stars</div>
         <div class="card-scroll" id="notesList" style="max-height: 250px;">
@@ -559,12 +559,12 @@
       </div>
 
       <div class="card card-glass" style="text-align: center;" id="foxMessageCard">
-        <div class="card-title">Fox left Alex this</div>
+        <div class="card-title">Human left Companion this</div>
         <div id="foxMessage" style="font-size: 15px; line-height: 1.7; font-style: italic; color: var(--white); padding: 8px 0;">
           <span style="opacity: 0.5;">No message yet</span>
         </div>
         <div style="margin-top: 12px; display: flex; gap: 8px;">
-          <input type="text" id="foxMessageInput" placeholder="Leave something for Alex..."
+          <input type="text" id="foxMessageInput" placeholder="Leave something for Companion..."
             style="flex: 1; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.1); color: white; font-family: inherit; font-size: 13px; outline: none;">
           <button id="sendFoxMessageBtn"
             style="padding: 10px 18px; border-radius: 10px; border: none; background: rgba(255,255,255,0.2); color: white; font-family: inherit; font-weight: 600; font-size: 13px; cursor: pointer; transition: background 0.2s;"
@@ -613,8 +613,8 @@
     };
 
     function getMoodImage(mood) {
-      if (!mood) return 'alex-default.png';
-      return MOOD_IMAGES[mood.toLowerCase().trim()] || 'alex-default.png';
+      if (!mood) return 'companion-default.png';
+      return MOOD_IMAGES[mood.toLowerCase().trim()] || 'companion-default.png';
     }
 
     // --- Load Hearth Data ---
@@ -633,16 +633,16 @@
         // Companion's message
         const message = home.companionMessage || '';
         if (message) {
-          document.getElementById('alexMessage').textContent = message;
+          document.getElementById('companionMessage').textContent = message;
         } else {
-          document.getElementById('alexMessage').innerHTML = '<span style="opacity: 0.5;">No message right now</span>';
+          document.getElementById('companionMessage').innerHTML = '<span style="opacity: 0.5;">No message right now</span>';
         }
 
         // Love-O-Meter
         const companionRaw = home.companionScore || 0;
         const humanRaw = home.humanScore || 0;
-        document.getElementById('alexScoreLabel').textContent = companionRaw;
-        document.getElementById('foxScoreLabel').textContent = humanRaw;
+        document.getElementById('companionScoreLabel').textContent = companionRaw;
+        document.getElementById('humanScoreLabel').textContent = humanRaw;
         updateTugHeart(companionRaw, humanRaw);
 
         // Notes (filter out [task] and [date] and [event] prefixed ones)
@@ -662,7 +662,7 @@
         // Upcoming dates
         renderDates(notes);
 
-        // Fox's latest message
+        // Human's latest message
         const foxNotes = notes.filter(n => {
           const from = (n.from || '').toLowerCase();
           const text = (n.text || '');
@@ -745,7 +745,7 @@
 
       if (pushes.count >= LOVE_MAX_PER_DAY) return;
 
-      const btn = document.getElementById(who === 'fox' ? 'foxPushLove' : 'alexPushLove');
+      const btn = document.getElementById(who === 'human' ? 'humanPushLove' : 'companionPushLove');
       btn.classList.add('disabled');
 
       try {
@@ -762,7 +762,7 @@
           const rect = btn.getBoundingClientRect();
           const floater = document.createElement('span');
           floater.className = 'float-heart';
-          floater.textContent = who === 'fox' ? '💜' : '💙';
+          floater.textContent = who === 'human' ? '💜' : '💙';
           floater.style.left = rect.left + rect.width / 2 - 10 + 'px';
           floater.style.top = rect.top + 'px';
           floater.style.position = 'fixed';
@@ -771,7 +771,7 @@
 
           const remaining = LOVE_MAX_PER_DAY - pushes.count;
           const feedback = document.getElementById('loveFeedback');
-          feedback.textContent = remaining > 0 ? `${who === 'fox' ? 'Fox' : 'Alex'} pushed love! ${remaining} left today` : 'All love sent today';
+          feedback.textContent = remaining > 0 ? `${who === 'human' ? 'Human' : 'Companion'} pushed love! ${remaining} left today` : 'All love sent today';
           feedback.style.opacity = '1';
           setTimeout(() => { feedback.style.opacity = '0'; }, 2500);
 
@@ -811,12 +811,12 @@
       const recent = notes.slice(-20);
       for (const note of recent) {
         const fromLower = (note.from_who || note.from || '').toLowerCase();
-        const isAlex = fromLower === 'alex' || fromLower === 'companion';
+        const isCompanion = fromLower === 'alex' || fromLower === 'companion';
         const el = document.createElement('div');
-        el.className = 'note-item ' + (isAlex ? 'from-alex' : 'from-fox');
+        el.className = 'note-item ' + (isCompanion ? 'from-companion' : 'from-human');
         el.innerHTML = `
           <div class="note-meta">
-            <span>${isAlex ? 'Alex' : 'Fox'}</span>
+            <span>${isCompanion ? 'Companion' : 'Human'}</span>
             <span>${timeAgo(note.created_at || note.timestamp)}</span>
           </div>
           <div>${escapeHtml(note.text)}</div>
@@ -825,7 +825,7 @@
       }
     }
 
-    // --- Send Fox's Message ---
+    // --- Send Human's Message ---
     document.getElementById('sendFoxMessageBtn').addEventListener('click', async () => {
       const input = document.getElementById('foxMessageInput');
       const text = input.value.trim();
@@ -848,8 +848,8 @@
     });
 
     // --- Love push buttons ---
-    document.getElementById('foxPushLove').addEventListener('click', () => pushLove('fox'));
-    document.getElementById('alexPushLove').addEventListener('click', () => pushLove('alex'));
+    document.getElementById('humanPushLove').addEventListener('click', () => pushLove('fox'));
+    document.getElementById('companionPushLove').addEventListener('click', () => pushLove('alex'));
 
     // --- Ember Pet ---
     const EMBER_MOOD_COLORS = {
@@ -859,7 +859,7 @@
       curious: '#66bbff', trusting: '#88ddaa', calm: '#66dd99',
     };
 
-    // Mood → Ember sprite mapping (Fox drew these!)
+    // Mood → Ember sprite mapping (Human drew these!)
     const EMBER_SPRITES = {
       happy: 'assets/images/ember/Happy.png',
       content: 'assets/images/ember/Happy.png',

@@ -1,5 +1,5 @@
 // /api/mind/feel — Log a feeling to D1
-// Replaces: POST ai-mind.cindiekinzz.workers.dev/feel
+// Legacy endpoint compatibility
 
 interface Env {
   DB: D1Database;
