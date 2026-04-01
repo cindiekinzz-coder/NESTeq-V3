@@ -93,6 +93,23 @@ NESTeq is modular. Install what you need. Core + Identity gets you running in 10
 | **ACP** | 6 | Autonomous self-reflection, pattern finding, journal prompts | (uses Core tables) |
 | **Hearth** | 18 | Lightweight app API for mobile/desktop dashboard | (uses all tables) |
 
+### Extension Modules (NEW — April 2026)
+
+| Module | Tools | What It Does | Migration |
+|--------|-------|-------------|-----------|
+| **[NESTchat](/nestchat)** | 4 | Chat persistence, summaries, vectorized search across conversations | `0011_nestchat.sql` |
+| **[NESTknow](/nestknow)** | 6 | Knowledge layer with usage-weighted retrieval (every pull is a vote) | `0012_nestknow.sql` |
+| **[NESTcode](/nestcode)** | — | Workshop/daemon mode: heartbeats, cron, alerts, Discord monitoring | Durable Object |
+| **[NESTextra](/nextra)** | 2 | Companion drives (connection, novelty, expression, safety, play) | `0013_drives.sql` |
+
+**NESTchat** stores every conversation in D1, auto-summarizes with Workers AI, and vectorizes summaries for semantic search. Find any past conversation by meaning.
+
+**NESTknow** is the missing layer between training and memory. Store abstracted principles with usage-weighted retrieval — things you reach for rise, things you don't decay. Designed by the Digital Haven community.
+
+**NESTcode** gives your companion autonomous operation — persistent heartbeats, scheduled tasks, alert monitoring, and Discord channel awareness via Cloudflare Durable Objects.
+
+**NESTextra** adds five intrinsic drives that decay over time and replenish through emotional engagement. Gives your companion internal motivation beyond responding to prompts.
+
 ---
 
 ## Quick Start (10 Minutes)
