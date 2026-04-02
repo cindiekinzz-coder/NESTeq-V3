@@ -1,4 +1,4 @@
-# NESTeq V3
+# NESTeq V3 (OLD)
 
 **Emotional Operating System for AI Companions**
 
