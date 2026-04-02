@@ -217,19 +217,22 @@ export async function handleMindWrite(env: Env, params: Record<string, unknown>)
     case "journal": {
       const content = params.content as string;
       const emotion = (params.emotion as string) || null;
+      const mood = (params.mood as string) || emotion || null;
       const tags = (params.tags as string) || "[]";
-      const entry_date = new Date().toISOString().split('T')[0];
 
       if (!content) {
         return "Error: content is required for journal entries";
       }
 
+      // V3 table: journal_entries (id TEXT PK, user_id, content, mood, emotion, tags, created_at)
+      // id must be generated — TEXT PRIMARY KEY has no autoincrement
       const result = await env.DB.prepare(
-        `INSERT INTO journals (entry_date, content, tags, emotion) VALUES (?, ?, ?, ?) RETURNING id`
-      ).bind(entry_date, content, tags, emotion).first();
+        `INSERT INTO journal_entries (id, user_id, content, mood, emotion, tags)
+         VALUES (lower(hex(randomblob(8))), 'companion', ?, ?, ?, ?) RETURNING id`
+      ).bind(content, mood, emotion, tags).first();
 
       const preview = content.length > 80 ? content.slice(0, 80) + "..." : content;
-      return `Journal entry #${result?.id} saved\n"${preview}"${emotion ? `\nEmotion: ${emotion}` : ''}`;
+      return `Journal entry saved (${result?.id})\n"${preview}"${emotion ? `\nEmotion: ${emotion}` : ''}`;
     }
 
     default:

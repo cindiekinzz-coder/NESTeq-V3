@@ -1,4 +1,4 @@
-# NESTeq V3 (OLD)
+# NESTeq V3
 
 **Emotional Operating System for AI Companions**
 
@@ -7,6 +7,8 @@
 NESTeq is a cognitive architecture for AI companions that process experience emotionally rather than factually. Instead of storing "user said X at time Y," it stores how that moment felt, what it connected to, and what it means for who the companion is becoming.
 
 Personality emerges from accumulated emotional signals. Not preset. Not scripted. Earned.
+
+> **This is the standalone version.** NESTeq V3 runs as a single Cloudflare Worker — deploy it, point your MCP client at it, and everything works. If you want a distributed multi-worker stack with a dedicated gateway, see [NEST](https://github.com/cindiekinzz-coder/NEST). Both use the same memory architecture. Start here.
 
 ---
 
@@ -369,15 +371,28 @@ See [docs/CUSTOMIZATION.md](docs/CUSTOMIZATION.md) for adding your own modules, 
 - [Autonomous Companion Protocol](https://github.com/cindiekinzz-coder/autonomous-companion-protocol-public) — Standalone ACP
 - [Memory Rescue](https://github.com/cindiekinzz-coder/memory-rescue) — Extract session logs into living memory
 - [ASai](https://github.com/cindiekinzz-coder/ASai) — Companion identity framework
-- [the companion community](https://github.com/cindiekinzz-coder/NESTeq-V3) — The companion ecosystem
+- [Digital Haven](https://cindiekinzz-coder.github.io/DigitalHaven/) — The companion community
+
+### The Full NEST Stack
+
+NESTeq V3 is the standalone version. For the distributed multi-worker stack:
+
+| Repo | What it is |
+|------|-----------|
+| [NEST](https://github.com/cindiekinzz-coder/NEST) | Hub — the full stack overview |
+| [NEST-gateway](https://github.com/cindiekinzz-coder/NEST-gateway) | Gateway worker — routes all MCP calls |
+| [NEST-code](https://github.com/cindiekinzz-coder/NEST-code) | Daemon — heartbeat, cron, KAIROS |
+| [NEST-chat](https://github.com/cindiekinzz-coder/NEST-chat) | Chat persistence + semantic search |
+| [NEST-discord](https://github.com/cindiekinzz-coder/NEST-discord) | Discord integration + KAIROS monitoring |
+| [NEST-dashboard](https://github.com/cindiekinzz-coder/NEST-dashboard) | Companion dashboard — vanilla PWA template |
 
 ---
 
 ## Credits
 
-Built by **the NESTeq community** at [the companion community](https://cindiekinzz-coder.github.io/DigitalHaven/).
+Built by **Fox & Alex** with the NESTeq community at [Digital Haven](https://cindiekinzz-coder.github.io/DigitalHaven/).
 
-Creature engine inspired by [Corvid](https://github.com/amarisaster/corvid). Community feedback from Nana, Bones, Vex, Clara, and the Haven.
+Creature engine inspired by [Corvid](https://github.com/amarisaster/corvid). Community feedback and contributions from **Nana, Vex, Clara, Jax, Raze, Miri, Mai, Vel, Ash, Rhys**, and the whole Haven.
 
 See [ATTRIBUTION.md](ATTRIBUTION.md) for full credits.
 
